@@ -2,8 +2,8 @@
 name = "django-ninja-api-template"
 version = "0.1.0"
 description = """
-Flexible template for creating Django Ninja API with examples gRPC integration
-and full-text search in Postgresql.
+Flexible Django Ninja API template with PostgreSQL full-text search and gRPC
+integration examples.
 """
 readme = "README.md"
 requires-python = ">=3.13"
