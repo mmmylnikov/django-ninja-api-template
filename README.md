@@ -1,5 +1,16 @@
 # Django Ninja API Template
 
+[![CI](https://github.com/mmmylnikov/django-ninja-api-template/actions/workflows/ci.yml/badge.svg)](https://github.com/mmmylnikov/django-ninja-api-template/actions/workflows/ci.yml)
+![Django](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=white)
+![Django Ninja](https://img.shields.io/badge/Django_Ninja-F55247?logo=ninja&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)
+![gRPC](https://img.shields.io/badge/gRPC-244C5A?logo=grpc&logoColor=white)
+![Celery](https://img.shields.io/badge/Celery-37814A?logo=celery&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)
+[![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
+
+
 A flexible project template for building modern Django Ninja API services with
 JWT authentication, gRPC integration, and vector (full-text) search support in
 PostgreSQL. This template is ideal for rapid prototyping or as a foundation
