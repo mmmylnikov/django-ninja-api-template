@@ -1,0 +1,100 @@
+services:
+  database:
+    image: postgres:14
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    shm_size: 128mb
+    volumes:
+      - api_events_db:/var/lib/postgresql/data
+    env_file:
+      - path: ./.env
+        required: true
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    command: >
+      postgres -c shared_preload_libraries=pg_trgm
+               -c pg_trgm.similarity_threshold=0.3
+
+  valkey:
+    image: valkey/valkey:latest
+    expose:
+      - "6379"
+    restart: unless-stopped
+    volumes:
+      - api_events_valkey:/data
+    command: valkey-server --save 60 1 --loglevel warning
+
+  notification-server:
+    build:
+      context: notify_grpc_service
+      dockerfile: Dockerfile
+    container_name: notification-server
+    expose:
+      - "50051"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  backend:
+    build: .
+    image: events_backend
+    restart: unless-stopped
+    command: runserver
+    env_file:
+      - .env
+    ports:
+      - "8080:8000"
+    depends_on:
+      - database
+      - valkey
+      - notification-server
+
+  celery_worker:
+    image: events_backend
+    restart: unless-stopped
+    command: celery-worker
+    env_file:
+      - .env
+    depends_on:
+      - backend
+      - database
+      - valkey
+
+  celery_beat:
+    image: events_backend
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - valkey
+      - database
+      - celery_worker
+    env_file:
+      - .env
+    command: celery-beat
+
+  celery_flower:
+    image: events_backend
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - valkey
+      - database
+      - celery_worker
+    env_file:
+      - .env
+    ports:
+      - "5555:5555"
+    command: celery-flower
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  api_events_db:
+  api_events_valkey:
