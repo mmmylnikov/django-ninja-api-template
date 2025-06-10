@@ -105,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = config.get('LANGUAGE_CODE')
+LANGUAGE_CODE = config.get('LANGUAGE_CODE') or 'en-us'
 
-TIME_ZONE = config.get('TIME_ZONE', 'UTC')
+TIME_ZONE = config.get('TIME_ZONE') or 'UTC'
 
 USE_TZ = True
 
