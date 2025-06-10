@@ -44,3 +44,6 @@ celery_flower:
 
 notify_build_proto:
 	cd notify_grpc_service && python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. notyfy.proto
+
+actci:
+	act -W ".github/workflows/ci.yml"

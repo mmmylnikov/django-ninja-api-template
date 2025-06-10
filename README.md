@@ -164,53 +164,60 @@ The project includes a Makefile with various commands to streamline development:
 #### Code Quality
 ```sh
 # Check WPS coding style issues
-make style_wps
+uv run make style_wps
 
 # Run Ruff linter
-make style_ruff
+uv run make style_ruff
 
 # Format code with Ruff
-make format_ruff
+uv run make format_ruff
 
 # Run all style checks and formatting
-make style
+uv run make style
 
 # Run type checking with mypy
-make types
+uv run make types
 
 # Run all checks (style + type checking)
-make check
+uv run make check
 ```
 
 #### Project Management
 
 ```sh
 # Run Django development server
-make debug
+uv run make debug
 
 # Run migrations
-make migrate
+uv run make migrate
 
 # Initialize test data
-make initdata
+uv run make initdata
 ```
 
 #### Celery Management
 
 ```sh
 # Run Celery worker
-make celery
+uv run make celery
 
 # Run Celery Beat scheduler
-make celery_beat
+uv run make celery_beat
 
 # Run Celery Flower monitoring
-make celery_flower
+uv run make celery_flower
 ```
 
 #### gRPC
 
 ```sh
 # Generate Python code from Protocol Buffer definition
-make notify_build_proto
+uv run make notify_build_proto
+```
+
+#### CI/CD
+
+```sh
+# Run locally CI Workflow
+uv run make actci
 ```
