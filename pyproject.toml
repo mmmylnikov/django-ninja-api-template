@@ -1,0 +1,139 @@
+[project]
+name = "django-ninja-api-template"
+version = "0.1.0"
+description = """
+Flexible template for creating Django Ninja API with examples gRPC integration
+and full-text search in Postgresql.
+"""
+readme = "README.md"
+requires-python = ">=3.13"
+
+keywords = [
+    "django",
+    "django-ninja",
+    "api",
+    "template",
+    "grpc",
+    "vector-search",
+    "postgresql",
+    "rest",
+    "openapi",
+    "jwt",
+    "celery",
+    "microservice",
+    "docker",
+    "scalable"
+]
+
+dependencies = [
+    "celery>=5.5.3",
+    "django>=5.2.1",
+    "django-celery-beat>=2.8.1",
+    "django-celery-results>=2.6.0",
+    "django-ninja>=1.4.1",
+    "djangorestframework-simplejwt>=5.5.0",
+    "email-validator>=2.2.0",
+    "flower>=2.0.1",
+    "grpcio>=1.73.0",
+    "grpcio-tools>=1.73.0",
+    "gunicorn>=23.0.0",
+    "psycopg2-binary>=2.9.10",
+    "python-dotenv>=1.1.0",
+    "redis>=6.2.0",
+]
+
+[dependency-groups]
+dev = [
+    "django-stubs>=5.2.0",
+    "flake8>=7.2.0",
+    "mypy>=1.15.0",
+    "ruff>=0.11.10",
+    "wemake-python-styleguide>=1.1.0",
+]
+
+[tool.ruff]
+src = ["."]
+line-length = 80
+preview = true
+fix = true
+format.quote-style = "single"
+format.docstring-code-format = false
+
+extend-exclude = [
+  "./**/migrations/**",
+  "*pb2*.py",
+  "*.proto",
+  "./venv",
+]
+
+lint.select = [
+  "A",    # flake8-builtins
+  "B",    # flake8-bugbear
+  "C4",   # flake8-comprehensions
+  "C90",  # maccabe
+  "COM",  # flake8-commas
+  # "D",    # pydocstyle
+  "DTZ",  # flake8-datetimez
+  "E",    # pycodestyle
+  # "ERA",  # flake8-eradicate
+  "EXE",  # flake8-executable
+  "F",    # pyflakes
+  "FBT",  # flake8-boolean-trap
+  "FLY",  # pyflint
+  "FURB", # refurb
+  "G",    # flake8-logging-format
+  "I",    # isort
+  "ICN",  # flake8-import-conventions
+  "ISC",  # flake8-implicit-str-concat
+  "LOG",  # flake8-logging
+  "N",    # pep8-naming
+  "PERF", # perflint
+  "PIE",  # flake8-pie
+  "PL",   # pylint
+  "PT",   # flake8-pytest-style
+  "PTH",  # flake8-use-pathlib
+  "Q",    # flake8-quotes
+  "RET",  # flake8-return
+  "RSE",  # flake8-raise
+  "RUF",  # ruff
+  "S",    # flake8-bandit
+  "SIM",  # flake8-simpify
+  "SLF",  # flake8-self
+  "SLOT", # flake8-slots
+  "T100", # flake8-debugger
+  "TRY",  # tryceratops
+  "UP",   # pyupgrade
+  "W",    # pycodestyle
+  "YTT",  # flake8-2020
+]
+lint.ignore = [
+  "A005",   # allow to shadow stdlib and builtin module names
+  "COM812", # trailing comma, conflicts with `ruff format`
+  # Different doc rules that we don't really care about:
+  "D100",
+  "D104",
+  "D106",
+  "D203",
+  "D212",
+  "D401",
+  "D404",
+  "D405",
+  "ISC001",  # implicit string concat conflicts with `ruff format`
+  "ISC003",  # prefer explicit string concat over implicit concat
+  "PLR09",   # we have our own complexity rules
+  "PLR2004", # do not report magic numbers
+  "PLR6301", # do not require classmethod / staticmethod when self not used
+  "TRY003",  # long exception messages from `tryceratops`
+  "UP032",  # do not use f-string instead of `format` call
+  # "RUF001",  # ignore check on cyrillic symblos in strings (o)
+  # "RUF002",  # ignore check on cyrillic symblos in strings (a)
+]
+
+lint.external = [ "WPS" ]
+lint.flake8-import-conventions.banned-from = [ "ast" ]
+lint.flake8-quotes.inline-quotes = "single"
+lint.mccabe.max-complexity = 6
+lint.pydocstyle.convention = "google"
+lint.isort.lines-after-imports = 2
+
+
